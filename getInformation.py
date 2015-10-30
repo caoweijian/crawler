@@ -13,7 +13,8 @@
 import urllib2, cookielib, urllib, sys
 from bs4 import BeautifulSoup
 
-def getInformation(mldm,mlmc):
+def getInformation(mldm):
+    mlmc=''
     cj=cookielib.CookieJar()
     opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cj))
     urllib2.install_opener(opener)
@@ -71,12 +72,11 @@ def getInformation(mldm,mlmc):
                     subject = subject.find_next('td')
                     subject = subject.find_next('td')
                     try:
-                        print>>output,"%s %s %s %s %s %s %s" %(uniName,str1[1:4],str1[5:],str2[1:7],str2[8:],str3[1:3],str3[4:])
+                        print>>output,"%s\t%s\t%s\t%s\t%s\t%s\t%s" %(uniName,str1[1:4],str1[5:],str2[1:7],str2[8:],str3[1:3],str3[4:])
                     except:
-                        print>>output,"%s %s %s %s %s %s %s" %(uniName,str1[1:4],str1[5:],str2[1:7],str2[8:],str3[1:3],str3[4:-1])
+                        print>>output,"%s\t%s\t%s\t%s\t%s\t%s\t%s" %(uniName,str1[1:4],str1[5:],str2[1:7],str2[8:],str3[1:3],str3[4:-1])
     output.close()
 
-
-mldm ='04'
-mlmc = 'ฝฬำýัง'
-getInformation(mldm,mlmc)
+mldm = ['01','02','03','04','05','06','07','08','09','10','11','12','13']
+for i in range(len(mldm)):
+    getInformation(mldm[i])
